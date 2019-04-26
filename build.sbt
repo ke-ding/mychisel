@@ -26,12 +26,14 @@ def javacOptionsVersion(scalaVersion: String): Seq[String] = {
 
 name := "mychisel"
 
-version := "3.0.0"
+version := "3.1.1"
 
-scalaVersion := "2.12.4"
+scalaVersion := "2.11.12"
 
-//crossScalaVersions := Seq("2.11.11", "2.12.3")
-//crossScalaVersions := Seq("2.12.4")
+crossScalaVersions := Seq("2.11.12", "2.12.4")
+
+run := (run in Compile).partialInput(" -fsm -td out").evaluated
+//run := (run in Compile).partialInput(" --target-dir out").evaluated
 
 resolvers ++= Seq(
   Resolver.sonatypeRepo("snapshots"),
@@ -40,8 +42,8 @@ resolvers ++= Seq(
 
 // Provide a managed dependency on X if -DXVersion="" is supplied on the command line.
 val defaultVersions = Map(
-  "chisel3" -> "3.0.+",
-  "chisel-iotesters" -> "1.1.+"
+  "chisel3" -> "3.1.+",
+  "chisel-iotesters" -> "1.2.5,1.3-SNAPSHOT["
   )
 
 //libraryDependencies ++= (Seq("chisel3","chisel-iotesters").map {
